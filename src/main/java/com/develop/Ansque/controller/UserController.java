@@ -1,5 +1,6 @@
 package com.develop.Ansque.controller;
 
+import com.develop.Ansque.service.impl.PostServiceImpl;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final PostServiceImpl postService;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -32,7 +34,8 @@ public class UserController {
     }
 
     @GetMapping("/home")
-    public String homePage() {
+    public String homePage(Model model) {
+        model.addAttribute("posts", postService.getAll());
         return "home";
     }
 

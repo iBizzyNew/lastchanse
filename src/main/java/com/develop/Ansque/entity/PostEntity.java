@@ -3,7 +3,8 @@ package com.develop.Ansque.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -25,10 +26,13 @@ public class PostEntity {
     private String text;
 
     @Column(name = "date")
-    private Date creationDate;
+    private LocalDate creationDate;
 
     @ManyToOne
     private UserEntity user;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    private Collection<MessageEntity> message;
 
     @Column(name = "status")
     private boolean status;

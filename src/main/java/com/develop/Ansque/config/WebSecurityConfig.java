@@ -35,6 +35,7 @@ public class WebSecurityConfig {
 
         http
                 .authorizeHttpRequests(request -> request
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().permitAll())
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")            // Указываем путь к своей странице входа

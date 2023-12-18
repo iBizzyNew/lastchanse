@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{/fragments/head :: head}"></head>
+<body>
+<div th:replace="~{/fragments/header :: header}"></div>
+<div class = "container" th:class="align-center">
+
+    <h2>Register new user</h2>
+
+<form th:action="@{/registration}" method="post" th:object="${user}">
+    <div>
+        <label>
+            <div class="alert-red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error
+            </div>
+        <input type="text" id="email" placeholder="Email" name="email" th:field="*{email}" required>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <div class="alert-red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error
+            </div>
+        <input type="password" id="password" placeholder="Password" name="password" th:field="*{password}" required>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <div class="alert-red" th:if="${#fields.hasErrors('person.name')}" th:errors="*{person.name}">Name Error
+            </div>
+        <input type="text" id="name" placeholder="Name" name="person.name" th:field="*{person.name}" required>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <div class="alert-red" th:if="${#fields.hasErrors('person.surname')}" th:errors="*{person.surname}">Surname Error
+            </div>
+        <input type="text" id="surname" placeholder="Surname" name="person.surname" th:field="*{person.surname}" required>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <div class="alert-red" th:if="${#fields.hasErrors('person.number')}" th:errors="*{person.number}">Number Error
+            </div>
+        <input type="text" id="number" placeholder="Number" name="person.number" th:field="*{person.number}" required>
+        </label>
+    </div>
+
+    <div>
+        <button class="green-btn" type="submit">Register</button>
+    </div>
+</form>
+
+</div>
+
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
+
+</body>
+</html>
